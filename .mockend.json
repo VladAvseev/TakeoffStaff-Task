@@ -1,5 +1,4 @@
 {
-    "Users" : {"hasMany": "User" },
     "User": {
         "name" : { "string" :  {} },
         "password" : { "string":  {}},
