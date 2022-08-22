@@ -4,8 +4,7 @@
         "password" : { "string":  {}},
         "contacts" : {
             "hasMany":  "Contact"
-        },
-        "belongsTo": "Users"
+        }
     },
     "Contact": {
         "name": { "string":  {}},
