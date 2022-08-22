@@ -1,11 +1,12 @@
 {
-    "Users" : {"fasMany": "User" },
+    "Users" : {"hasMany": "User" },
     "User": {
         "name" : { "string" :  {} },
         "password" : { "string":  {}},
         "contacts" : {
             "hasMany":  "Contact"
-        }
+        },
+        "belongsTo": "Users"
     },
     "Contact": {
         "name": { "string":  {}},

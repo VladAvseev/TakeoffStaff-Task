@@ -32,17 +32,17 @@ export const fetchUser = ({name, password} : UserParams) =>{
     }
 }
 
-export const createUser = ({name, password} : UserParams) =>{
-    return async (dispatch: Dispatch<UserAction>) => {
-        try {
-            dispatch({type: UserActionTypes.FETCH_USER});
-            const res = await axios.get('');
-            dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data}));
-        } catch (e) {
-            dispatch({
-                type: UserActionTypes.FETCH_USER_ERROR,
-                payload: 'Пользователь с таким именем уже существует'
-            });
-        }
-    }
-}
+// export const createUser = ({name, password} : UserParams) =>{
+//     return async (dispatch: Dispatch<UserAction>) => {
+//         try {
+//             dispatch({type: UserActionTypes.FETCH_USER});
+//             const res = await axios.get('');
+//             dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data}));
+//         } catch (e) {
+//             dispatch({
+//                 type: UserActionTypes.FETCH_USER_ERROR,
+//                 payload: 'Пользователь с таким именем уже существует'
+//             });
+//         }
+//     }
+// }
