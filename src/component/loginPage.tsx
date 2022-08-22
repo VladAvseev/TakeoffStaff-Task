@@ -30,6 +30,9 @@ export default function LoginPage() {
 
     return (
         <Container component="main" maxWidth="xs">
+            {JSON.stringify(user)}
+            {JSON.stringify(error)}
+            {JSON.stringify(loading)}
             <Box
                 sx={{
                     marginTop: 8,

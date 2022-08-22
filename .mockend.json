@@ -1,4 +1,5 @@
 {
+    "Users" : {"fasMany": "User" },
     "User": {
         "name" : { "string" :  {} },
         "password" : { "string":  {}},

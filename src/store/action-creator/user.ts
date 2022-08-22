@@ -12,14 +12,21 @@ export const fetchUser = ({name, password} : UserParams) =>{
         try {
             dispatch({type: UserActionTypes.FETCH_USER});
             const res = await axios.get(
-                `https://mockend.com/org/takeoff-task/user?name_contains=${name}&password_contains=${password}`
+                `https://mockend.com/VladAvseev/takeoff-task/users?name_contains=${name}&password_contains=${password}`
             );
-            console.log(res);
-            dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data}));
+            console.log(res.data);
+            if (res.data.id) {
+                dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data}));
+            } else {
+                dispatch({
+                    type: UserActionTypes.FETCH_USER_ERROR,
+                    payload: 'Введён неверный пароль или такого пользователя не существует'
+                });
+            }
         } catch (e) {
             dispatch({
                 type: UserActionTypes.FETCH_USER_ERROR,
-                payload: 'Введён неверный пароль или такого пользователя не существует'
+                payload: 'Ошибка авторизации'
             });
         }
     }
