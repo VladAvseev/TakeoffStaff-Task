@@ -1,11 +1,16 @@
 import React from 'react';
 import LoginPage from "./component/loginPage";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import UserPage from "./component/UserPage";
 
 const App = () => {
     return (
-        <div>
-            <LoginPage />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path={'/'} element={<LoginPage />}/>
+                <Route path={'/user/:id'} element={<UserPage />}/>
+            </Routes>
+        </BrowserRouter>
     );
 };
 

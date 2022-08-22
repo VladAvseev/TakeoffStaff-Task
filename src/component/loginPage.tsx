@@ -5,21 +5,23 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useTypedSelector} from "../hooks/useTypedSelector";
-import {useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {useActions} from "../hooks/useAction";
+import {useNavigate} from "react-router-dom";
 
 interface UserInput {
     name: string;
     password: string;
 }
 
-export default function LoginPage() {
+const LoginPage: FC = () => {
     const {user, loading, error} = useTypedSelector((state) => state.user);
     const [userInput, setUserInput] = useState<UserInput>({
         name: '',
         password: ''
     })
     const {fetchUser} = useActions();
+    const navigate = useNavigate();
 
     const login = async () => {
         fetchUser({
@@ -28,11 +30,14 @@ export default function LoginPage() {
         });
     }
 
+    useEffect(() => {
+        if (user?.id) {
+            navigate(`/user/${user.id}`);
+        }
+    }, [user]);
+
     return (
         <Container component="main" maxWidth="xs">
-            {JSON.stringify(user)}
-            {JSON.stringify(error)}
-            {JSON.stringify(loading)}
             <Box
                 sx={{
                     marginTop: 8,
@@ -113,3 +118,5 @@ export default function LoginPage() {
         </Container>
     );
 }
+
+export default LoginPage

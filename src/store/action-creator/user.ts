@@ -14,9 +14,8 @@ export const fetchUser = ({name, password} : UserParams) =>{
             const res = await axios.get(
                 `https://mockend.com/VladAvseev/takeoff-task/user?name_contains=${name}&password_contains=${password}`
             );
-            console.log(res.data);
             if (res.data[0].id) {
-                dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data}));
+                dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data[0]}));
             } else {
                 dispatch({
                     type: UserActionTypes.FETCH_USER_ERROR,
@@ -26,23 +25,14 @@ export const fetchUser = ({name, password} : UserParams) =>{
         } catch (e) {
             dispatch({
                 type: UserActionTypes.FETCH_USER_ERROR,
-                payload: 'Ошибка авторизации'
+                payload: 'Server error',
             });
         }
     }
 }
 
-// export const createUser = ({name, password} : UserParams) =>{
-//     return async (dispatch: Dispatch<UserAction>) => {
-//         try {
-//             dispatch({type: UserActionTypes.FETCH_USER});
-//             const res = await axios.get('');
-//             dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data}));
-//         } catch (e) {
-//             dispatch({
-//                 type: UserActionTypes.FETCH_USER_ERROR,
-//                 payload: 'Пользователь с таким именем уже существует'
-//             });
-//         }
-//     }
-// }
+export const removeUser = () =>{
+    return async (dispatch: Dispatch<UserAction>) => {
+            dispatch({type: UserActionTypes.REMOVE_USER});
+    }
+}
