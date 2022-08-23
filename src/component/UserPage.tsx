@@ -10,6 +10,7 @@ const UserPage = () => {
 
     const exitHandler = async () => {
         removeUser();
+        navigate('/');
     }
 
     useEffect(() => {

@@ -31,8 +31,12 @@ export const fetchUser = ({name, password} : UserParams) =>{
     }
 }
 
-export const removeUser = () =>{
+export const removeUser = () => {
     return async (dispatch: Dispatch<UserAction>) => {
             dispatch({type: UserActionTypes.REMOVE_USER});
     }
+}
+
+export const addContact = () => {
+
 }
