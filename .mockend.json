@@ -2,7 +2,9 @@
     "User": {
         "name" : { "string" :  {} },
         "password" : { "string":  {}},
-        "contacts" : []
+        "contacts" : [
+            {"hasMany": "Contact"}
+        ]
     },
     "Contact": {
         "name": { "string":  {}},
