@@ -15,6 +15,7 @@ export const fetchUser = ({name, password} : UserParams) =>{
                 `https://mockend.com/VladAvseev/takeoff-task/user?name_contains=${name}&password_contains=${password}`
             );
             if (res.data[0].id) {
+                console.log(res.data[0]);
                 dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data[0]}));
             } else {
                 dispatch({
