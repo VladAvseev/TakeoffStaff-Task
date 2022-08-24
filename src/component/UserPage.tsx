@@ -9,7 +9,7 @@ const UserPage = () => {
     const [inputContact, setInputContact] = useState<string>('');
     const {user, loading, error} = useTypedSelector((state) => state.user);
     const navigate = useNavigate();
-    const {removeUser, addContact} = useActions();
+    const {removeUser, fetchUser} = useActions();
 
     const exitHandler = async () => {
         removeUser();
@@ -19,6 +19,8 @@ const UserPage = () => {
     useEffect(() => {
         if (!user) {
             navigate('/');
+        } else {
+            fetchUser(user);
         }
     }, [])
 
@@ -45,11 +47,7 @@ const UserPage = () => {
                         }}
                     />
                     <Button
-                        onClick={() => {
-                            if (user) {
-                                addContact(user)
-                            }
-                        }}
+                        onClick={() => {}}
                         variant="contained"
                         disabled={loading}
                         sx={{ mt: 3, mb: 2 }}
@@ -57,6 +55,7 @@ const UserPage = () => {
                         Добавить контакт
                     </Button>
                 </div>
+            {user?.contacts.length ? user?.contacts.map((contact) => (<div>{contact.name} : {contact.phone}</div>)) : null}
         </div>
     );
 };

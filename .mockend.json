@@ -8,6 +8,7 @@
     },
     "Contact": {
         "name": { "string": {} },
-        "phone": { "string":  {}}
+        "phone": { "string":  {}},
+        "belongsTo" : "User"
     }
 }

@@ -20,11 +20,11 @@ const LoginPage: FC = () => {
         name: '',
         password: ''
     })
-    const {fetchUser} = useActions();
+    const {loginUser} = useActions();
     const navigate = useNavigate();
 
     const login = async () => {
-        fetchUser({
+        loginUser({
             name: userInput.name,
             password: userInput.password
         });

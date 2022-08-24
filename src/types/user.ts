@@ -1,7 +1,13 @@
+interface IContact {
+    name: string;
+    phone: string;
+}
+
 export interface IUser {
     id: number;
     name: string;
     password: string;
+    contacts: IContact[] ;
 }
 
 export interface UserState {

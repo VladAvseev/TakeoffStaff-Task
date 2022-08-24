@@ -8,7 +8,7 @@ interface UserParams {
     password: string
 }
 
-export const fetchUser = ({name, password} : UserParams) =>{
+export const loginUser = ({name, password} : UserParams) =>{
     return async (dispatch: Dispatch<UserAction>) => {
         try {
             dispatch({type: UserActionTypes.FETCH_USER});
@@ -38,9 +38,22 @@ export const removeUser = () => {
     }
 }
 
-export const addContact = (user: IUser) => {
+export const fetchUser = (user: IUser) => {
     return async (dispatch: Dispatch<UserAction>) => {
-        const res = await axios.get(`https://mockend.com/VladAvseev/takeoff-task/graphql?query`);
-        console.log(res);
+        dispatch({type: UserActionTypes.FETCH_USER});
+        const graphqlQuery = {
+            "operationName": "getUser",
+            "query": `query getUser { user (id: ${user.id}) { id name contacts { name phone } } }`,
+            "variables": {}
+        };
+        const res = await axios.post(`https://mockend.com/VladAvseev/takeoff-task/graphql`, graphqlQuery);
+        if (res.data.id) {
+            dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data}));
+        } else {
+            dispatch({
+                type: UserActionTypes.FETCH_USER_ERROR,
+                payload: 'Введён неверный пароль или такого пользователя не существует'
+            });
+        }
     }
 }
