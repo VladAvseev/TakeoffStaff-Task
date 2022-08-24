@@ -1,6 +1,7 @@
-import {UserAction, UserActionTypes} from "../../types/user";
+import {IUser, UserAction, UserActionTypes} from "../../types/user";
 import {Dispatch} from "react";
 import axios from "axios";
+import {} from 'graphql';
 
 interface UserParams {
     name: string;
@@ -15,7 +16,6 @@ export const fetchUser = ({name, password} : UserParams) =>{
                 `https://mockend.com/VladAvseev/takeoff-task/user?name_contains=${name}&password_contains=${password}`
             );
             if (res.data[0].id) {
-                console.log(res.data[0]);
                 dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data[0]}));
             } else {
                 dispatch({
@@ -38,6 +38,9 @@ export const removeUser = () => {
     }
 }
 
-export const addContact = () => {
-
+export const addContact = (user: IUser) => {
+    return async (dispatch: Dispatch<UserAction>) => {
+        const res = await axios.get(`https://mockend.com/VladAvseev/takeoff-task/graphql?query`);
+        console.log(res);
+    }
 }

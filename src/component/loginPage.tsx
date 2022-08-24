@@ -92,7 +92,6 @@ const LoginPage: FC = () => {
                         id="password"
                         autoComplete="current-password"
                     />
-                    {/*<div style={{display: 'flex', gap: 10}}>*/}
                         <Button
                             onClick={() => login()}
                             type="submit"
@@ -103,16 +102,6 @@ const LoginPage: FC = () => {
                         >
                             Войти
                         </Button>
-                        {/*<Button*/}
-                        {/*    type="submit"*/}
-                        {/*    fullWidth*/}
-                        {/*    variant="contained"*/}
-                        {/*    disabled={loading}*/}
-                        {/*    sx={{ mt: 3, mb: 2 }}*/}
-                        {/*>*/}
-                        {/*    Зарегистрироваться*/}
-                        {/*</Button>*/}
-                    {/*</div>*/}
                 </Box>
             </Box>
         </Container>

@@ -3,7 +3,13 @@
         "name" : { "string" :  {} },
         "password" : { "string":  {}},
         "contacts" : {
-            "string":  []
+            "hasMany": "Contact"
+        }
+    },
+    "Contact": {
+        "name": {
+            "string": {},
+            "phone": {}
         }
     }
 }
