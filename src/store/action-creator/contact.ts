@@ -21,7 +21,6 @@ export const addContact = (userId: number, contacts: IContact[], name: string, p
             contacts: newContacts
         })
         dispatch({type: ContactActionTypes.ADD_CONTACT, payload: res.data.contacts});
-        dispatch({type: ContactActionTypes.FETCH_CONTACT_SUCCESS});
     }
 }
 
@@ -41,7 +40,6 @@ export const editContact = (userId: number, contacts: IContact[], contactID: num
             contacts: newContacts
         })
         dispatch({type: ContactActionTypes.EDIT_CONTACT, payload: res.data.contacts});
-        dispatch({type: ContactActionTypes.FETCH_CONTACT_SUCCESS});
     }
 }
 
@@ -52,6 +50,5 @@ export const deleteContact = (userId: number, contacts: IContact[], contactId: n
             contacts: newContacts
         });
         dispatch({type: ContactActionTypes.DELETE_CONTACT, payload: res.data.contacts});
-        dispatch({type: ContactActionTypes.FETCH_CONTACT_SUCCESS});
     }
 }

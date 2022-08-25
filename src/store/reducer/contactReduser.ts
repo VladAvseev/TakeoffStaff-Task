@@ -16,8 +16,6 @@ export const contactReducer = (state = initialState, action: ContactAction): Con
             return {...state, loading: true, contacts: action.payload}
         case ContactActionTypes.DELETE_CONTACT:
             return {...state, loading: true, contacts: action.payload}
-        case ContactActionTypes.FETCH_CONTACT_SUCCESS:
-            return {...state, loading: false}
         default:
             return {...state}
     }

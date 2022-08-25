@@ -17,7 +17,6 @@ export enum ContactActionTypes {
     ADD_CONTACT= 'ADD_CONTACT',
     EDIT_CONTACT= 'EDIT_CONTACT',
     DELETE_CONTACT= 'DELETE_CONTACT',
-    FETCH_CONTACT_SUCCESS= 'FETCH_CONTACT_SUCCESS'
 }
 
 interface GetContactsAction {
@@ -40,8 +39,5 @@ interface DeleteContactAction {
     payload: IContact[];
 }
 
-interface FetchContactSuccessAction {
-    type: ContactActionTypes.FETCH_CONTACT_SUCCESS;
-}
 
-export type ContactAction = GetContactsAction | AddContactAction | EditContactAction | DeleteContactAction | FetchContactSuccessAction
+export type ContactAction = GetContactsAction | AddContactAction | EditContactAction | DeleteContactAction
