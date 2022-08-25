@@ -20,7 +20,7 @@ const LoginPage: FC = () => {
         name: '',
         password: ''
     })
-    const {loginUser} = useActions();
+    const {loginUser, regUser} = useActions();
     const navigate = useNavigate();
 
     const login = async () => {
@@ -28,6 +28,13 @@ const LoginPage: FC = () => {
             name: userInput.name,
             password: userInput.password
         });
+    }
+
+    const registration = async () => {
+        regUser({
+            name: userInput.name,
+            password: userInput.password
+        })
     }
 
     useEffect(() => {
@@ -92,16 +99,28 @@ const LoginPage: FC = () => {
                         id="password"
                         autoComplete="current-password"
                     />
-                        <Button
-                            onClick={() => login()}
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            disabled={loading}
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Войти
-                        </Button>
+                        <div style={{display: 'flex', gap: 10}}>
+                            <Button
+                                onClick={login}
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                disabled={loading}
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Войти
+                            </Button>
+                            <Button
+                                onClick={registration}
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                disabled={loading}
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Зарегистрироваться
+                            </Button>
+                        </div>
                 </Box>
             </Box>
         </Container>

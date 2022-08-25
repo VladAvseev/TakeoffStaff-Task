@@ -1,0 +1,38 @@
+{
+  "users": [
+    {
+      "name": "vlad",
+      "password": "1234",
+      "contacts": [
+        {
+          "id": 1661424901554,
+          "contactName": "artem",
+          "contactPhone": "+79317654321"
+        },
+        {
+          "id": 1661425242427,
+          "contactName": "sasha",
+          "contactPhone": "+79911111111"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "jora",
+      "password": "1234",
+      "contacts": [
+        {
+          "id": 1661426172937,
+          "contactName": "vlad",
+          "contactPhone": "+79911231231"
+        },
+        {
+          "id": 1661433908337,
+          "contactName": "pasha",
+          "contactPhone": "+79317747742"
+        }
+      ],
+      "id": 2
+    }
+  ]
+}

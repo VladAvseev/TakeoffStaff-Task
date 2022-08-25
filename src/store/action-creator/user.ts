@@ -1,7 +1,6 @@
 import {IUser, UserAction, UserActionTypes} from "../../types/user";
 import {Dispatch} from "react";
 import axios from "axios";
-import {} from 'graphql';
 
 interface UserParams {
     name: string;
@@ -12,11 +11,11 @@ export const loginUser = ({name, password} : UserParams) =>{
     return async (dispatch: Dispatch<UserAction>) => {
         try {
             dispatch({type: UserActionTypes.FETCH_USER});
-            const res = await axios.get(
-                `https://mockend.com/VladAvseev/takeoff-task/user?name_contains=${name}&password_contains=${password}`
+            const res = await axios.get<IUser[]>(
+                `http://localhost:3000/users?name=${name}&password=${password}`
             );
-            if (res.data[0].id) {
-                dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data[0]}));
+            if (res.data.length) {
+                dispatch({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data[0]});
             } else {
                 dispatch({
                     type: UserActionTypes.FETCH_USER_ERROR,
@@ -38,22 +37,24 @@ export const removeUser = () => {
     }
 }
 
-export const fetchUser = (user: IUser) => {
+export const regUser = ({name, password}: UserParams) => {
     return async (dispatch: Dispatch<UserAction>) => {
         dispatch({type: UserActionTypes.FETCH_USER});
-        const graphqlQuery = {
-            "operationName": "getUser",
-            "query": `query getUser { user (id: ${user.id}) { id name contacts { name phone } } }`,
-            "variables": {}
-        };
-        const res = await axios.post(`https://mockend.com/VladAvseev/takeoff-task/graphql`, graphqlQuery);
-        if (res.data.id) {
-            dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data}));
-        } else {
+        const res = await axios.get(
+            `http://localhost:3000/users?name=${name}`
+        );
+        if (res.data.length) {
             dispatch({
                 type: UserActionTypes.FETCH_USER_ERROR,
-                payload: 'Введён неверный пароль или такого пользователя не существует'
+                payload: 'Пользователь с таким именем уже существует'
             });
+        } else {
+            const res = await axios.post<IUser>(`http://localhost:3000/users`, {
+                name: name,
+                password: password,
+                contacts: []
+            });
+            dispatch(({type: UserActionTypes.FETCH_USER_SUCCESS, payload: res.data}));
         }
     }
 }
